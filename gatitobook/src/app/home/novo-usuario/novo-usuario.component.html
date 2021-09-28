@@ -9,6 +9,21 @@
       class="form-control mt-4"
       formControlName="email"
     />
+    <app-mensagem
+      *ngIf="
+        novoUsuarioForm.get('email')?.errors?.required &&
+        novoUsuarioForm.get('email')?.touched
+      "
+      mensagem="E-mail obrigatório"
+    ></app-mensagem>
+
+    <app-mensagem
+      *ngIf="
+        novoUsuarioForm.get('email')?.errors?.email &&
+        novoUsuarioForm.get('email')?.touched
+      "
+      mensagem="Email no formato incorreto"
+    ></app-mensagem>
   </div>
   <div class="form-group">
     <input
@@ -17,6 +32,14 @@
       class="form-control mt-4"
       formControlName="fullName"
     />
+    <app-mensagem
+      *ngIf="
+        novoUsuarioForm.get('fullName')?.errors &&
+        novoUsuarioForm.get('fullName')?.touched
+      "
+      mensagem="Nome incorreto"
+    >
+    </app-mensagem>
   </div>
   <div class="form-group">
     <input
@@ -25,6 +48,19 @@
       class="form-control mt-4"
       formControlName="userName"
     />
+    <app-mensagem
+      mensagem="Usuário deve ser com letra minúscula"
+      *ngIf="
+        novoUsuarioForm.get('userName')?.errors?.minusculo &&
+        novoUsuarioForm.get('userName')?.touched
+      "
+    >
+    </app-mensagem>
+    <app-mensagem
+      mensagem="Usuário já existe"
+      *ngIf="novoUsuarioForm.get('userName')?.errors?.usuarioExistente"
+    >
+    </app-mensagem>
   </div>
   <div class="form-group">
     <input
@@ -33,6 +69,11 @@
       class="form-control mt-4"
       formControlName="password"
     />
+    <app-mensagem
+      *ngIf="novoUsuarioForm.errors?.senhaIgualUsuario"
+      mensagem="Senha deve ser diferente do usuário"
+    >
+    </app-mensagem>
   </div>
   <button type="submit" class="btn btn-block btn-primary w-100 mt-4">
     Cadastro

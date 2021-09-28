@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
+import { minusculoValidator } from './minusculo.validator';
 import { NovoUsuario } from './novo-usuario';
 import { NovoUsuarioService } from './novo-usuario.service';
+import { UsuarioExisteService } from './usuario-existe.service';
+import { usuarioSenhaIguaisValidator } from './usuario-senha-iguais.validator';
 
 @Component({
   selector: 'app-novo-usuario',
@@ -15,28 +19,42 @@ export class NovoUsuarioComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private novoUsuarioService: NovoUsuarioService
+    private novoUsuarioService: NovoUsuarioService,
+    private usuarioExistestenteService: UsuarioExisteService,
+    private router: Router
   ) { }
 
   //metodo de ciclo de vida do angular é executado após a classe injetar todos os serviços
+  //na terceira posição do array, a terceira posição do array é outro array só que aqui eu passo as validações assíncronas.
   ngOnInit(): void {
-    this.novoUsuarioForm = this.formBuilder.group({
-      email: [''],
-      fullName: [''],
-      userName: [''],
-      password: ['']
-    })
+    this.novoUsuarioForm = this.formBuilder.group(
+      {
+        email: ['', [Validators.required, Validators.email]],
+        fullName: ['', [Validators.required, Validators.minLength(4)]],
+        userName: [
+          '',
+          [minusculoValidator],
+          [this.usuarioExistestenteService.usuarioJaExiste()],
+        ],
+        password: ['', [Validators.required, Validators.minLength(4)]],
+      },
+      {
+        validators: [usuarioSenhaIguaisValidator],
+      }
+    );
   }
 
   cadastrar() {
-    const novoUsuario = this.novoUsuarioForm.getRawValue() as NovoUsuario
-
-    this.novoUsuarioService.cadastraNovoUsuario(novoUsuario).subscribe((resposta) => {
-      console.log('deu bom');
-
-    })
-    console.log(novoUsuario);
-
-
+    if (this.novoUsuarioForm.valid) {
+      const novoUsuario = this.novoUsuarioForm.getRawValue() as NovoUsuario;
+      this.novoUsuarioService.cadastraNovoUsuario(novoUsuario).subscribe(
+        () => {
+          this.router.navigate(['']);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
   }
 }

@@ -3,7 +3,10 @@ import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 import { tap } from 'rxjs/operators'
 
+import { environment } from './../../environments/environment'
 import { UsuarioService } from './usuario/usuario.service'
+
+const API = environment.apiURL
 
 //essa notação angular, que indica que essa classe pode ser injetada em outro componente, em outro serviço
 @Injectable({
@@ -16,7 +19,7 @@ export class AutenticacaoService {
   //dentro do observable
   autenticar(usuario: string, senha: string): Observable<HttpResponse<any>> {
     return this.httpClient.post(
-      'http://localhost:3000/user/login',
+      `${API}/user/login`,
       {
         userName: usuario,
         password: senha,

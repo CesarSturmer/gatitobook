@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import jwt_decode from 'jwt-decode'
-import { BehaviorSubject } from 'rxjs'
+import { BehaviorSubject, Observable } from 'rxjs'
 
 import { TokenService } from './../token.service'
 import { Usuario } from './usuario'
@@ -32,7 +32,7 @@ export class UsuarioService {
   }
 
   // metodo para ele se tornar um observable(asObservable), para perder a habilidade de enviar informação, sendo assim só recebe
-  retornaUsuario() {
+  retornaUsuario(): Observable<Usuario> {
     return this.usuarioSubject.asObservable();
   }
 

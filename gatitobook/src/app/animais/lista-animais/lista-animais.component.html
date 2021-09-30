@@ -1,7 +1,2 @@
-<!--
-  quando a requisição  terminar ele mostra a grade
-  asyn vao fazer o subscribe e vai atribuir o observable as 'animais'
--->
-<div *ngIf="animais$ | async as animais">
   <app-grade-fotos-animais [animais]="animais"></app-grade-fotos-animais>
-</div>
+

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Observable } from 'rxjs'
 import { switchMap, tap } from 'rxjs/operators'
@@ -14,6 +14,8 @@ import { ComentariosService } from './comentarios.service'
 export class ComentariosComponent implements OnInit {
   @Input() id!: number;
 
+  @Output() AtualizaComentario = new EventEmitter();
+
   comentarios$!: Observable<Comentarios>;
 
   comentarioForm!: FormGroup;
@@ -26,7 +28,7 @@ export class ComentariosComponent implements OnInit {
   ngOnInit(): void {
     this.comentarios$ = this.comentarioService.buscarComentario(this.id);
     this.comentarioForm = this.formBuilder.group({
-      comentario: ['', Validators.maxLength(300)],
+      comentario: ['', [Validators.maxLength(300), Validators.minLength(5)]],
     });
   }
 
@@ -41,6 +43,7 @@ export class ComentariosComponent implements OnInit {
         tap(() => {
           this.comentarioForm.reset();
           alert('Comentário foi Salvo com sucesso');
+          this.AtualizaComentario.emit();
         })
       );
   }

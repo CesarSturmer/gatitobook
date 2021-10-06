@@ -10,7 +10,7 @@
       Gatito Book
     </a>
     <app-menu #menu>
-      <ul class="list-unstyled">
+      <ul *ngIf="estaLogado; " class="list-unstyled">
         <li>
           <a [routerLink]="['animais', 'novo']">Novo Animal</a>
         </li>

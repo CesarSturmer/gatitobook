@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 
+import { AutenticacaoGuard } from './../autenticacao/autenticacao.guard'
 import { DetalheAnimalComponent } from './detalhe-animal/detalhe-animal.component'
 import { ListaAnimaisComponent } from './lista-animais/lista-animais.component'
 import { ListaAnimaisResolver } from './lista-animais/lista-animais.resolver'
@@ -16,7 +17,8 @@ const routes: Routes = [
   },
   {
     path: 'novo',
-    component: NovoAnimalComponent
+    component: NovoAnimalComponent,
+    canLoad : [AutenticacaoGuard]
   },
   {
     path: ':animalID',

@@ -33,7 +33,7 @@
 
   ```bash
     cd gatitobook $ npm install
-    %% ng s -o
+    && ng s -o
   ```
   
 # Tecnologias  🚀

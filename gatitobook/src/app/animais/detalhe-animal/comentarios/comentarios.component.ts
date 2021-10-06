@@ -20,6 +20,8 @@ export class ComentariosComponent implements OnInit {
 
   comentarioForm!: FormGroup;
 
+  buttonControle: boolean = true;
+
   constructor(
     private comentarioService: ComentariosService,
     private formBuilder: FormBuilder
@@ -30,6 +32,16 @@ export class ComentariosComponent implements OnInit {
     this.comentarioForm = this.formBuilder.group({
       comentario: ['', [Validators.maxLength(300), Validators.minLength(5)]],
     });
+  }
+
+  onkey(event: any) {
+    if (event.target.value.length > 5) {
+      this.buttonControle = false;
+    }
+
+    if (!event.target.value.length) {
+      this.buttonControle = true;
+    }
   }
 
   enviarComentario(): void {

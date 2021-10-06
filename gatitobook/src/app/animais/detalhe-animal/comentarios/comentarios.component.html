@@ -10,10 +10,16 @@
   <div class="mt-4">
     <form [formGroup]="comentarioForm" (ngSubmit)="enviarComentario()">
       <div class="input-group">
-        <textarea class="form-control" formControlName="comentario"> </textarea>
+        <textarea
+          (keyup)="onkey($event)"
+          placeholder="Digite seu comentario"
+          class="form-control"
+          formControlName="comentario"
+        >
+        </textarea>
         <div class="input-group-append">
           <button
-            [disabled]="comentarioForm.invalid"
+            [disabled]="buttonControle"
             class="btn btn-primary pull-left h-100"
             type="submit"
           >

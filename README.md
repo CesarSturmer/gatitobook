@@ -35,5 +35,13 @@
     cd gatitobook $ npm install
     %% ng s -o
   ```
+  
+# Tecnologias  🚀
+Este projeto foi desenvolvido utilizando as seguintes tecnologias:
+
+- [Angular](https://angular.io/)
+- [Javascript](https://www.javascript.com/)
+- [Typescript](https://www.typescriptlang.org/)
+
 
 

@@ -6,30 +6,32 @@ import { tap } from 'rxjs/operators'
 import { environment } from './../../environments/environment'
 import { UsuarioService } from './usuario/usuario.service'
 
-const API = environment.apiURL
+const API = environment.apiURL;
 
-//essa notação angular, que indica que essa classe pode ser injetada em outro componente, em outro serviço
 @Injectable({
   providedIn: 'root',
 })
 export class AutenticacaoService {
-  constructor(private httpClient: HttpClient, private usuarioService: UsuarioService) { }
+  constructor(
+    private httpClient: HttpClient,
+    private usuarioService: UsuarioService
+  ) {}
 
-  //OBJETO do tipo observable, é uma promisse javascrip, quando a requisição terminar ele vai retonar o objeto que definir
-  //dentro do observable
   autenticar(usuario: string, senha: string): Observable<HttpResponse<any>> {
-    return this.httpClient.post(
-      `${API}/user/login`,
-      {
-        userName: usuario,
-        password: senha,
-      },
-      { observe: 'response' }
-    ).pipe(
-      tap((res) => {
-        const authToken = res.headers.get('x-access-token') ?? '';
-        this.usuarioService.salvaToken(authToken)
-      })
-    )
+    return this.httpClient
+      .post(
+        `${API}/user/login`,
+        {
+          userName: usuario,
+          password: senha,
+        },
+        { observe: 'response' }
+      )
+      .pipe(
+        tap((res) => {
+          const authToken = res.headers.get('x-access-token') ?? '';
+          this.usuarioService.salvaToken(authToken);
+        })
+      );
   }
 }

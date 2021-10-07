@@ -6,33 +6,26 @@ import { UsuarioService } from './../../autenticacao/usuario/usuario.service'
 @Component({
   selector: 'app-cabecalho',
   templateUrl: './cabecalho.component.html',
-  styleUrls: ['./cabecalho.component.css']
+  styleUrls: ['./cabecalho.component.css'],
 })
 export class CabecalhoComponent implements OnInit {
-
-  user$ = this.usuarioService.retornaUsuario()
+  user$ = this.usuarioService.retornaUsuario();
 
   estaLogado!: boolean;
 
-  constructor(private usuarioService: UsuarioService, private router: Router) { }
-
+  constructor(private usuarioService: UsuarioService, private router: Router) {}
 
   ngOnInit() {
-    this.user$.subscribe((res)=>  {
-      if(res.id) {
+    this.user$.subscribe((res) => {
+      if (res.id) {
         this.estaLogado = true;
       } else {
-        this.estaLogado = false
+        this.estaLogado = false;
       }
     });
-
-
   }
   logout() {
     this.usuarioService.logout();
-    this.router.navigate([''])
+    this.router.navigate(['']);
   }
-
-
-
 }

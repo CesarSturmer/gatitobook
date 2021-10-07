@@ -9,7 +9,6 @@ import { Animais } from './../animais'
   styleUrls: ['./lista-animais.component.css'],
 })
 export class ListaAnimaisComponent implements OnInit {
-  //nao está estanciando, apenas declarando !:
   animais!: Animais;
 
   constructor(private activatedRoute: ActivatedRoute) {}

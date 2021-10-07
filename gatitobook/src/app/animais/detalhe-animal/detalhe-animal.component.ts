@@ -33,7 +33,6 @@ export class DetalheAnimalComponent implements OnInit {
     });
   }
 
-  // função para receber emit Output do Filho
   comentarios() {
     this.animal$ = this.animaisService.buscaPorId(this.animalId);
   }

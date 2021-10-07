@@ -14,7 +14,6 @@ import { usuarioSenhaIguaisValidator } from './usuario-senha-iguais.validator'
   styleUrls: ['./novo-usuario.component.css'],
 })
 export class NovoUsuarioComponent implements OnInit {
-  //deixar explicito nulo ou nao. Instanciar esse modulo no ngOnInit e nao no constructor
   novoUsuarioForm!: FormGroup;
 
   constructor(
@@ -22,10 +21,8 @@ export class NovoUsuarioComponent implements OnInit {
     private novoUsuarioService: NovoUsuarioService,
     private usuarioExistestenteService: UsuarioExisteService,
     private router: Router
-  ) { }
+  ) {}
 
-  //metodo de ciclo de vida do angular é executado após a classe injetar todos os serviços
-  //na terceira posição do array, a terceira posição do array é outro array só que aqui eu passo as validações assíncronas.
   ngOnInit(): void {
     this.novoUsuarioForm = this.formBuilder.group(
       {

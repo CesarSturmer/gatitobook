@@ -4,19 +4,15 @@ import { NgModule } from '@angular/core'
 
 import { AutenticacaoInterceptor } from './autenticacao.interceptor'
 
-//provide = criar um serviço do tipo httpreceptor
-
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AutenticacaoInterceptor,
-      multi: true //padrao o angular entender uma única classe de interceptor, dessa forma ele poderia ter vários interceptor.
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
-export class AutenticacaoModule { }
+export class AutenticacaoModule {}

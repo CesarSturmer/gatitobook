@@ -7,8 +7,6 @@ import { Animais } from '../animais'
 import { AnimaisService } from '../animais.service'
 import { UsuarioService } from './../../autenticacao/usuario/usuario.service'
 
-//O objetivo desse serviço é realizar alguma operação, carregar alguma informação antes da rota ser resolvida.
-
 @Injectable({
   providedIn: 'root',
 })

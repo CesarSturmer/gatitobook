@@ -8,7 +8,6 @@ import { CabecalhoComponent } from './cabecalho.component'
 @NgModule({
   declarations: [CabecalhoComponent],
   imports: [CommonModule, RouterModule, MenuModule],
-
   exports: [CabecalhoComponent],
 })
-export class CabecalhoModule { }
+export class CabecalhoModule {}

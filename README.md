@@ -10,7 +10,7 @@
   
   
 
-## Requirements 🔧
+# Requirements 🔧
   - [Node](https://nodejs.org/en/)
   - [Npm](https://www.npmjs.com/)
   - [Angular CLi](https://angular.io/cli)
@@ -36,12 +36,14 @@
     && ng s -o
   ```
   
-# Tecnologias  🚀
+# Technologies  🚀
 Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 
-- [Angular](https://angular.io/)
-- [Javascript](https://www.javascript.com/)
-- [Typescript](https://www.typescriptlang.org/)
+<p>
+   <img src="https://github.com/devicons/devicon/blob/master/icons/angularjs/angularjs-original.svg" alt="Sass" width="70" height="70"/>
+   <img src="https://github.com/devicons/devicon/blob/master/icons/typescript/typescript-original.svg" alt="typescript" width="70" height="70"/>
+
+</p>
 
 
 
